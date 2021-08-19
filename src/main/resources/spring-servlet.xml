@@ -8,5 +8,12 @@
     <context:component-scan base-package="org.wangjstu.meeting" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-    <mvc:annotation-driven/>
+    <!-- 乱码解决参考 https://www.jianshu.com/p/ad0d0c8bb0db-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg index="0" value="utf-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 </beans>
